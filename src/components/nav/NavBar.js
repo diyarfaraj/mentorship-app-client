@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Input, Menu } from "semantic-ui-react";
 
-const NavBar = (params) => {
+const NavBar = ({ setFormOpen }) => {
   return (
     <Menu inverted fixed="top">
       <Container>
@@ -18,9 +18,10 @@ const NavBar = (params) => {
         <Input placeholder="Search..." style={{ height: 43, marginTop: 5 }} />
         <Menu.Item position="right">
           <Button
+            onClick={() => setFormOpen(true)}
             basic
             inverted
-            content="Register"
+            content="Create Mentorship Program"
             style={{ marginRight: "0.5em" }}
           />
           <Button basic inverted content="Log in" />

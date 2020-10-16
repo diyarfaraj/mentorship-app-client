@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import ProgramListItem from "./ProgramListItem";
 
-const ProgramList = () => {
+const ProgramList = ({ programs }) => {
   return (
     <>
-      <ProgramListItem />
-      <ProgramListItem />
-      <ProgramListItem />
+      {programs.map((program) => (
+        <ProgramListItem program={program} key={program.id} />
+      ))}
     </>
   );
 };

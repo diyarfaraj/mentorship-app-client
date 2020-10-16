@@ -1,18 +1,19 @@
 import React from "react";
-import { Item, Segment } from "semantic-ui-react";
+import { Button, Icon, Item, List, Segment } from "semantic-ui-react";
+import ProgramListMentees from "./ProgramListMentees";
 
-const ProgramListItem = () => {
+const ProgramListItem = ({ program }) => {
   return (
     <>
       <Segment.Group>
         <Segment>
           <Item.Group>
             <Item>
-              <Item.Image size="tiny" circular src={event.hostPhotoURL} />
+              <Item.Image size="tiny" circular src={program.hostPhotoURL} />
               <Item.Content>
-                <Item.Header as="a">{event.title}</Item.Header>
+                <Item.Header as="a">{program.title}</Item.Header>
                 <Item.Description>
-                  Hosted by <a>{event.hostedBy}</a>
+                  Hosted by <a>{program.hostedBy}</a>
                 </Item.Description>
               </Item.Content>
             </Item>
@@ -20,19 +21,19 @@ const ProgramListItem = () => {
         </Segment>
         <Segment>
           <span>
-            <Icon name="clock" /> {event.date} |
-            <Icon name="marker" /> {event.venue}
+            <Icon name="clock" /> {program.date} |
+            <Icon name="marker" /> {program.venue}
           </span>
         </Segment>
         <Segment secondary>
           <List horizontal>
-            {event.attendees.map((attendee) => (
-              <EventListAttendee key={attendee.id} attendee={attendee} />
+            {program.mentees.map((mentee) => (
+              <ProgramListMentees key={mentee.id} mentee={mentee} />
             ))}
           </List>
         </Segment>
         <Segment clearing>
-          <span>{event.description}</span>
+          <span>{program.description}</span>
           <Button as="a" color="teal" floated="right" content="View" />
         </Segment>
       </Segment.Group>
