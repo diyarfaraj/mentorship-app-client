@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Icon, Item, List, Segment } from "semantic-ui-react";
 import ProgramListMentees from "./ProgramListMentees";
 
-const ProgramListItem = ({ program }) => {
+const ProgramListItem = ({ program, selectProgram }) => {
   return (
     <>
       <Segment.Group>
@@ -34,7 +34,14 @@ const ProgramListItem = ({ program }) => {
         </Segment>
         <Segment clearing>
           <span>{program.description}</span>
-          <Button as="a" color="teal" floated="right" content="View" />
+
+          <Button
+            onClick={() => selectProgram(program)}
+            as="a"
+            color="teal"
+            floated="right"
+            content="View"
+          />
         </Segment>
       </Segment.Group>
     </>

@@ -1,9 +1,16 @@
 import cuid from "cuid";
 import React, { useState } from "react";
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Button, Form, Header, Segment } from "semantic-ui-react";
 
-const ProgramForm = ({ setFormOpen, setPrograms, createProgram }) => {
-  const initialValues = {
+const ProgramForm = ({
+  setFormOpen,
+  setPrograms,
+  createProgram,
+  selectedProgram,
+  updateProgram,
+  deletePorgram,
+}) => {
+  const initialValues = selectedProgram ?? {
     title: "",
     category: "",
     city: "",
@@ -13,13 +20,15 @@ const ProgramForm = ({ setFormOpen, setPrograms, createProgram }) => {
   const [values, setValues] = useState(initialValues);
 
   const handleFormSubmit = () => {
-    createProgram({
-      ...values,
-      id: cuid(),
-      hostedBy: "Bob",
-      mentees: [],
-      hostPhotoURL: "https://randomuser.me/api/portraits/men/20.jpg",
-    });
+    selectedProgram
+      ? updateProgram({ ...selectedProgram, ...values })
+      : createProgram({
+          ...values,
+          id: cuid(),
+          hostedBy: "Bob",
+          mentees: [],
+          hostPhotoURL: "https://randomuser.me/api/portraits/men/20.jpg",
+        });
     setFormOpen(false);
   };
   const handleInputChange = (e) => {
@@ -29,8 +38,10 @@ const ProgramForm = ({ setFormOpen, setPrograms, createProgram }) => {
   };
   return (
     <Segment>
+      <Header
+        content={selectedProgram ? "Edit program" : " Create new program"}
+      />
       <Form onSubmit={handleFormSubmit}>
-        <h3>Create a new Mentorship Program</h3>
         <Form.Field>
           <input
             placeholder="Program Title"
@@ -73,7 +84,15 @@ const ProgramForm = ({ setFormOpen, setPrograms, createProgram }) => {
             onChange={(e) => handleInputChange(e)}
           />
         </Form.Field>
-
+        {selectedProgram ? (
+          <Button
+            onClick={() => deletePorgram(selectedProgram.id)}
+            as="a"
+            color="red"
+            floated="right"
+            content="Delete"
+          />
+        ) : null}
         <Button positive type="submit" content="Submit" />
         <Button onClick={() => setFormOpen(false)} type="button">
           Cancel

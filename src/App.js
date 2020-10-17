@@ -6,12 +6,28 @@ import ProgramDashboard from "./components/program/programDashboard/ProgramDashb
 
 function App() {
   const [formOpen, setFormOpen] = useState(false);
+  const [selectedProgram, setSelectedProgram] = useState(null);
+
+  const handleSelectProgram = (program) => {
+    setSelectedProgram(program);
+    setFormOpen(true);
+  };
+
+  const handleCreateFormOpen = () => {
+    setSelectedProgram(null);
+    setFormOpen(true);
+  };
 
   return (
     <div className="App">
       <Container>
-        <NavBar setFormOpen={setFormOpen} />
-        <ProgramDashboard formOpen={formOpen} setFormOpen={setFormOpen} />
+        <NavBar setFormOpen={handleCreateFormOpen} />
+        <ProgramDashboard
+          formOpen={formOpen}
+          setFormOpen={setFormOpen}
+          selectProgram={handleSelectProgram}
+          selectedProgram={selectedProgram}
+        />
       </Container>
     </div>
   );
