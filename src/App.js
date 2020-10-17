@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { Route } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import "./App.css";
 import NavBar from "./components/nav/NavBar";
-import ProgramDashboard from "./components/program/programDashboard/ProgramDashboard";
+import ProgramDashboard from "./pages/ProgramDashboard";
+import HomePage from "./pages/HomePage";
+import ProgramDetailedPage from "./pages/ProgramDetailedPage.js";
+import ProgramForm from "./components/program/form/ProgramForm";
 
 function App() {
   const [formOpen, setFormOpen] = useState(false);
@@ -20,14 +24,13 @@ function App() {
 
   return (
     <div className="App">
-      <Container>
-        <NavBar setFormOpen={handleCreateFormOpen} />
-        <ProgramDashboard
-          formOpen={formOpen}
-          setFormOpen={setFormOpen}
-          selectProgram={handleSelectProgram}
-          selectedProgram={selectedProgram}
-        />
+      <NavBar setFormOpen={handleCreateFormOpen} />
+
+      <Container className="mainContainer">
+        <Route exact path="/home" component={HomePage} />
+        <Route exact path="/programs" component={ProgramDashboard} />
+        <Route path="/programs/:id" component={ProgramDetailedPage} />
+        <Route path="/createProgram" component={ProgramForm} />
       </Container>
     </div>
   );

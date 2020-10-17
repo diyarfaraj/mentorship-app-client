@@ -28,8 +28,8 @@
   color: #61dafb;
 }
 
-.ui.grid {
-  margin-top: 1em;
+.mainContainer {
+  margin-top: 5.5em;
 }
 
 @keyframes App-logo-spin {

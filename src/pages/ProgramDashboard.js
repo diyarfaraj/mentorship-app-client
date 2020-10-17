@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Grid } from "semantic-ui-react";
-import ProgramList from "./ProgramList";
-import ProgramForm from "../form/ProgramForm";
-import { sampleData } from "../../../services/sampleData";
+import ProgramList from "../components/program/programDashboard/ProgramList";
+import ProgramForm from "../components/program/form/ProgramForm";
+import { sampleData } from "../services/sampleData";
 
 const ProgramDashboard = ({
   formOpen,
