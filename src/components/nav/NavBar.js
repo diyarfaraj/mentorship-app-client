@@ -1,11 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Button, Container, Input, Menu } from "semantic-ui-react";
 
 const NavBar = ({ setFormOpen }) => {
   return (
     <Menu inverted fixed="top">
       <Container>
-        <Menu.Item header link>
+        <Menu.Item as={NavLink} exact to="/home" header>
           <img
             src="/assets/hearthands.jpg"
             alt="logo"
@@ -13,18 +14,27 @@ const NavBar = ({ setFormOpen }) => {
           />
           Mentorship App
         </Menu.Item>
-        <Menu.Item name="Programs" link />
-        <Menu.Item name="Mentors" link />
+        <Menu.Item as={NavLink} to="/programs" name="Programs" />
+        <Menu.Item as={NavLink} to="/mentorsPage" name="Mentors" link />
         <Input placeholder="Search..." style={{ height: 43, marginTop: 5 }} />
         <Menu.Item position="right">
           <Button
-            onClick={() => setFormOpen(true)}
+            as={NavLink}
+            to="/createProgram"
             basic
             inverted
             content="Create Mentorship Program"
             style={{ marginRight: "0.5em" }}
           />
-          <Button basic inverted content="Log in" />
+        </Menu.Item>
+        <Menu.Item position="right">
+          <Button
+            as={NavLink}
+            to="/loginPage"
+            basic
+            inverted
+            content="Log in"
+          />
         </Menu.Item>
       </Container>
     </Menu>
