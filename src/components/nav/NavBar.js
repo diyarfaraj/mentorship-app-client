@@ -1,8 +1,23 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { Button, Container, Input, Menu } from "semantic-ui-react";
+import React, { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { Container, Input, Menu } from "semantic-ui-react";
+import SignedInMenu from "./SignedInMenu";
+import SignedOutMenu from "./SignedOutMenu";
 
 const NavBar = ({ setFormOpen }) => {
+  const history = useHistory();
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const handleSignOut = () => {
+    setAuthenticated(false);
+    history.push("/");
+  };
+
+  const handleSignIn = () => {
+    setAuthenticated(true);
+    history.push("/programs");
+  };
+
   return (
     <Menu inverted fixed="top">
       <Container>
@@ -17,25 +32,11 @@ const NavBar = ({ setFormOpen }) => {
         <Menu.Item as={NavLink} to="/programs" name="Programs" />
         <Menu.Item as={NavLink} to="/mentorsPage" name="Mentors" link />
         <Input placeholder="Search..." style={{ height: 43, marginTop: 5 }} />
-        <Menu.Item position="right">
-          <Button
-            as={NavLink}
-            to="/createProgram"
-            basic
-            inverted
-            content="Create Mentorship Program"
-            style={{ marginRight: "0.5em" }}
-          />
-        </Menu.Item>
-        <Menu.Item position="right">
-          <Button
-            as={NavLink}
-            to="/loginPage"
-            basic
-            inverted
-            content="Log in"
-          />
-        </Menu.Item>
+        {authenticated ? (
+          <SignedInMenu signOut={handleSignOut} />
+        ) : (
+          <SignedOutMenu signIn={handleSignIn} />
+        )}
       </Container>
     </Menu>
   );

@@ -1,5 +1,6 @@
 import cuid from "cuid";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Form, Header, Segment } from "semantic-ui-react";
 
 const ProgramForm = ({
@@ -94,7 +95,7 @@ const ProgramForm = ({
           />
         ) : null}
         <Button positive type="submit" content="Submit" />
-        <Button onClick={() => setFormOpen(false)} type="button">
+        <Button as={Link} to="/programs" type="button">
           Cancel
         </Button>
       </Form>

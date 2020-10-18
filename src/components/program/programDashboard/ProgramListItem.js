@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Icon, Item, List, Segment } from "semantic-ui-react";
 import ProgramListMentees from "./ProgramListMentees";
 
@@ -36,8 +37,8 @@ const ProgramListItem = ({ program, selectProgram }) => {
           <span>{program.description}</span>
 
           <Button
-            onClick={() => selectProgram(program)}
-            as="a"
+            as={Link}
+            to={`/programs/${program.id}`}
             color="teal"
             floated="right"
             content="View"
