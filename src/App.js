@@ -7,21 +7,9 @@ import ProgramDashboard from "./pages/ProgramDashboard";
 import HomePage from "./pages/HomePage";
 import ProgramDetailedPage from "./pages/ProgramDetailedPage.js";
 import ProgramForm from "./components/program/form/ProgramForm";
+import Sandbox from "./redux/sandbox/SandBox";
 
 function App() {
-  /*  const [formOpen, setFormOpen] = useState(false);
-  const [selectedProgram, setSelectedProgram] = useState(null); */
-
-  /* const handleSelectProgram = (program) => {
-    setSelectedProgram(program);
-    setFormOpen(true);
-  }; */
-
-  /*   const handleCreateFormOpen = () => {
-    setSelectedProgram(null);
-    setFormOpen(true);
-  }; */
-
   return (
     <div className="App">
       <Route exact path="/" component={HomePage} />
@@ -33,6 +21,8 @@ function App() {
 
             <Container className="mainContainer">
               <Route exact path="/home" component={HomePage} />
+              <Route exact path="/sandbox" component={Sandbox} />
+
               <Route exact path="/programs" component={ProgramDashboard} />
               <Route path="/programs/:id" component={ProgramDetailedPage} />
               <Route

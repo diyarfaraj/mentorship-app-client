@@ -6,25 +6,6 @@ import { sampleData } from "../services/sampleData";
 const ProgramDashboard = () => {
   const [programs, setPrograms] = useState(sampleData);
 
-  /* //create
-  const handleCreateProgram = (program) => {
-    setPrograms([...programs, program]);
-  };
-
-  //update
-  const handleUpdateProgram = (updatedProgram) => {
-    setPrograms(
-      programs.map((program) =>
-        program.id === updatedProgram.id ? updatedProgram : program
-      )
-    );
-  }; */
-
-  //delete
-  /* const handleDeleteProgram = (programsId) => {
-    setPrograms(programs.filter((prgm) => prgm.id !== programsId));
-  }; */
-
   return (
     <Grid>
       <Grid.Column width={10}>
