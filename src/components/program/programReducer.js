@@ -1,29 +1,38 @@
 import { sampleData } from "../../services/sampleData";
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "./eventConstants";
+import {
+  CREATE_PROGRAM,
+  UPDATE_PROGRAM,
+  DELETE_PROGRAM,
+} from "./programConstants";
 
 const initialState = {
-  events: sampleData,
+  programs: sampleData,
 };
 
-export default function eventReducer(state = initialState, { type, payload }) {
+export default function PROGRAMReducer(
+  state = initialState,
+  { type, payload }
+) {
   switch (type) {
-    case CREATE_EVENT:
+    case CREATE_PROGRAM:
       return {
         ...state,
-        events: [...state.events, payload],
+        programs: [...state.programs, payload],
       };
-    case UPDATE_EVENT:
+    case UPDATE_PROGRAM:
       return {
         ...state,
-        events: [
-          ...state.events.filter((evt) => evt.id !== payload.id),
+        programs: [
+          ...state.programs.filter((program) => program.id !== payload.id),
           payload,
         ],
       };
-    case DELETE_EVENT:
+    case DELETE_PROGRAM:
       return {
         ...state,
-        events: [...state.events.filter((evt) => evt.id !== payload)],
+        programs: [
+          ...state.programs.filter((program) => program.id !== payload),
+        ],
       };
     default:
       return state;

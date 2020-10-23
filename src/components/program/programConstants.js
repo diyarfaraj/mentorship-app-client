@@ -1,3 +1,3 @@
-export const CREATE_EVENT = "CREATE_EVENT";
-export const UPDATE_EVENT = "UPDATE_EVENT";
-export const DELETE_EVENT = "DELETE_EVENT";
+export const CREATE_PROGRAM = "CREATE_PROGRAM";
+export const UPDATE_PROGRAM = "UPDATE_PROGRAM";
+export const DELETE_PROGRAM = "DELETE_PROGRAM";

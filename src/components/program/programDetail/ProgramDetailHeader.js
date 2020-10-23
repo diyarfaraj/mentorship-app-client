@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Header, Image, Item, Segment } from "semantic-ui-react";
 
-const ProgramDetailHeader = () => {
+const ProgramDetailHeader = ({ program }) => {
+  console.log(program);
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
@@ -18,12 +19,12 @@ const ProgramDetailHeader = () => {
               <Item.Content>
                 <Header
                   size="huge"
-                  content="Event Title"
+                  content={program.title}
                   style={{ color: "white" }}
                 />
-                <p>Event Date</p>
+                <p>{program.date}</p>
                 <p>
-                  Hosted by <strong>Bob</strong>
+                  Hosted by <strong>{program.hostedBy}</strong>
                 </p>
               </Item.Content>
             </Item>
