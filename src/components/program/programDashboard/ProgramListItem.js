@@ -14,7 +14,7 @@ const ProgramListItem = ({ program, selectProgram }) => {
               <Item.Content>
                 <Item.Header as="a">{program.title}</Item.Header>
                 <Item.Description>
-                  Hosted by <a>{program.hostedBy}</a>
+                  Hosted by <a href="#home">{program.hostedBy}</a>
                 </Item.Description>
               </Item.Content>
             </Item>

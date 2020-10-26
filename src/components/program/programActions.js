@@ -1,22 +1,26 @@
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "./eventConstants";
+import {
+  CREATE_PROGRAM,
+  UPDATE_PROGRAM,
+  DELETE_PROGRAM,
+} from "./programConstants";
 
-export function createEvent(event) {
+export function createProgram(program) {
   return {
-    type: CREATE_EVENT,
-    payload: event,
+    type: CREATE_PROGRAM,
+    payload: program,
   };
 }
 
-export function updateEvent(event) {
+export function updateProgram(program) {
   return {
-    type: UPDATE_EVENT,
-    payload: event,
+    type: UPDATE_PROGRAM,
+    payload: program,
   };
 }
 
-export function deleteEvent(eventId) {
+export function deleteProgram(programId) {
   return {
-    type: DELETE_EVENT,
-    payload: eventId,
+    type: DELETE_PROGRAM,
+    payload: programId,
   };
 }

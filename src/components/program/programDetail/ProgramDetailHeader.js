@@ -1,9 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import { Button, Header, Image, Item, Segment } from "semantic-ui-react";
+
+import { deleteProgram } from "../programActions";
 
 const ProgramDetailHeader = ({ program }) => {
   console.log(program);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
@@ -36,9 +42,22 @@ const ProgramDetailHeader = ({ program }) => {
         <Button>Cancel My Place</Button>
         <Button color="teal">JOIN THIS EVENT</Button>
 
-        <Button as={Link} to={`manage/`} color="orange" floated="right">
-          Manage Event
+        <Button
+          as={Link}
+          to={`/manage/${program.id}`}
+          color="orange"
+          floated="right"
+        >
+          Manage Program
         </Button>
+        <Button
+          as={Link}
+          to="/programs"
+          onClick={() => dispatch(deleteProgram(program.id))}
+          color="red"
+          floated="right"
+          content="Delete"
+        />
       </Segment>
     </Segment.Group>
   );

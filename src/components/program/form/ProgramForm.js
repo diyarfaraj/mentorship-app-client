@@ -1,20 +1,21 @@
 import cuid from "cuid";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import { Button, Form, Header, Segment } from "semantic-ui-react";
+import { createProgram, updateProgram, deleteProgram } from "../programActions";
 
-const ProgramForm = ({
-  setFormOpen,
-  setPrograms,
-  createProgram,
-  selectedProgram,
-  updateProgram,
-  deletePorgram,
-}) => {
+const ProgramForm = ({ match }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const selectedProgram = useSelector((state) =>
+    state.program.programs.find((p) => p.id === match.params.id)
+  );
   const initialValues = selectedProgram ?? {
     title: "",
     category: "",
     city: "",
+    description: "",
     host: "",
     date: "",
   };
@@ -22,15 +23,18 @@ const ProgramForm = ({
 
   const handleFormSubmit = () => {
     selectedProgram
-      ? updateProgram({ ...selectedProgram, ...values })
-      : createProgram({
-          ...values,
-          id: cuid(),
-          hostedBy: "Bob",
-          mentees: [],
-          hostPhotoURL: "https://randomuser.me/api/portraits/men/20.jpg",
-        });
-    setFormOpen(false);
+      ? dispatch(updateProgram({ ...selectedProgram, ...values }))
+      : dispatch(
+          createProgram({
+            ...values,
+            id: cuid(),
+            hostedBy: "Bob",
+            mentees: [],
+            hostPhotoURL: "https://randomuser.me/api/portraits/men/20.jpg",
+          })
+        );
+
+    history.push("/programs");
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +74,14 @@ const ProgramForm = ({
         </Form.Field>
         <Form.Field>
           <input
+            placeholder="Description"
+            name="description"
+            value={values.description}
+            onChange={(e) => handleInputChange(e)}
+          />
+        </Form.Field>
+        <Form.Field>
+          <input
             placeholder="Host"
             name="host"
             value={values.host}
@@ -87,7 +99,7 @@ const ProgramForm = ({
         </Form.Field>
         {selectedProgram ? (
           <Button
-            onClick={() => deletePorgram(selectedProgram.id)}
+            onClick={() => dispatch(deleteProgram(selectedProgram.id))}
             as="a"
             color="red"
             floated="right"
