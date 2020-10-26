@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import "./App.css";
 import NavBar from "./components/nav/NavBar";
@@ -10,6 +10,8 @@ import ProgramForm from "./components/program/form/ProgramForm";
 import Sandbox from "./redux/sandbox/SandBox";
 
 function App() {
+  const { key } = useLocation();
+
   return (
     <div className="App">
       <Route exact path="/" component={HomePage} />
@@ -26,6 +28,7 @@ function App() {
               <Route exact path="/programs" component={ProgramDashboard} />
               <Route path="/programs/:id" component={ProgramDetailedPage} />
               <Route
+                key={key}
                 path={["/createProgram", "/manage/:id"]}
                 component={ProgramForm}
               />

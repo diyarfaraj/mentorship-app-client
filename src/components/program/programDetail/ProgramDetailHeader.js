@@ -1,14 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Header, Image, Item, Segment } from "semantic-ui-react";
 
 import { deleteProgram } from "../programActions";
 
 const ProgramDetailHeader = ({ program }) => {
-  console.log(program);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   return (
     <Segment.Group>

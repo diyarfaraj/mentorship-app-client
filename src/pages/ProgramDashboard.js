@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Grid } from "semantic-ui-react";
 import ProgramList from "../components/program/programDashboard/ProgramList";
-import { sampleData } from "../services/sampleData";
 
 const ProgramDashboard = () => {
-  //const [programs, setPrograms] = useState(sampleData);
   const { programs } = useSelector((state) => state.program);
 
   return (
